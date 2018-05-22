@@ -10,9 +10,26 @@ class UsersController < ApplicationController
         flash[:success] = "Welcome to the Alpha blog #{@user.username}"
         redirect_to articles_path
     else
-      render 'new'
+      render action: 'new'
     end
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      flash[:success] = "Your account was updated sucessfully"
+      redirect_to articles_path
+    else
+      render 'edit'
+    end
+
+  end
+
 
   private
   def user_params
