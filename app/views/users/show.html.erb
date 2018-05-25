@@ -2,4 +2,4 @@
 <%= gravatar_for @user %>
 
 <h4 style="text-align: center;"><%= @user.username %>'s article</h4>
-<%= render 'articles/article', obj: @user.articles %>
+<%= render partial: 'articles/article', object: @user.articles, as: :articles %>

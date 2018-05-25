@@ -5,9 +5,11 @@
     <th>Title</th>
     <th>Description</th>
   </tr>
-  <%	 obj.each do |article| %>
+
+  <%#= debugger %>
+  <%	 articles.each do |article| %>
     <tr>
-      <td><%= article.title %></td>
+      <td><%= link_to article.title, article_path(article) %></td>
       <td><%= article.description %></td>
       <div class="article-meta-detail">
         <td>Created by <%= article.user.username%> if article.user</td>
