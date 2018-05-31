@@ -1,17 +1,25 @@
 <h1>Showing selected article</h1>
 <% if @article.user %>
-  <ul class="listing">
+  <ul class="listing" style="text-align: center; list-style: none;">
     <li><%= link_to gravatar_for(@article.user), user_path(@article.user)%></li>
     <!--    link to the user showpage use user_path-->
-    <li><%= link_to @article.user.username, user_path(@article.user)%> </li>
+    <li style="font-size:2em; padding:10px; font-weight: bold;"><%= link_to @article.user.username, user_path(@article.user)%> </li>
     <li><%= pluralize(@article.user.articles.count, "article") if @article.user.articles %></li>
   </ul>
 <% end %>
-<p>
-  Title: <%= @article.title%>
-</p>
-<p>
-  Description <%= @article.description %>
-</p>
-<%= link_to "Edit this article", edit_article_path%> |
-<%= link_to "Back to listing", articles_path%>
+
+<h2 align="center">Title: <%= @article.title %></h2>
+<div class="well col-xs-8 col-xs-offset-2">
+  <h4 class="center description"><strong>Description:</strong></h4>
+  <hr>
+  <%= simple_format(@article.description) %>
+  <div class="article-actions">
+    <% if logged_in? && current_user == @article.user %>
+      <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
+      <%= link_to "Delete this article", article_path(@article), method: :delete,
+                  data: {confirm: "Are you sure you want to delete the article?"},
+                  class: "btn btn-xs btn-danger" %>
+      <%end%>
+    <%= link_to "View all articles", articles_path, class: "btn btn-xs btn-success" %>
+  </div>
+</div>

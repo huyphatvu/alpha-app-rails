@@ -1,0 +1,9 @@
+%h1
+  .center Welcome to #{@user.username}'s page
+.center
+  = will_paginate @user_articles
+.center
+  = gravatar_for @user
+%h4{style: "text-align: center;"} #{@user.username}'s article
+= render partial: 'articles/article', object: @user_articles, as: :articles
+%div{align: "center"}= will_paginate @user_articles

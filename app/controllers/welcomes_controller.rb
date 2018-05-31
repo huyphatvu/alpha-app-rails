@@ -1,5 +1,9 @@
 class WelcomesController < ApplicationController
   def index
-    render 'welcomes/myIndex'
+    redirect_to articles_path if logged_in?
+  end
+
+  def about
+
   end
 end
