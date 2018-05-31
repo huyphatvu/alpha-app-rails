@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def current_user
-    (@current_user || User.find(session[:user_id]) if session[:user_id])
+     (@current_user || User.find(session[:user_id]) if session[:user_id])
+
     # return the user if there is a user_id stored & backed by the browser in the session hash
     # if so then find the user in the db based on the user id
     # current_user if the current user already exist, if so return the previous current user
