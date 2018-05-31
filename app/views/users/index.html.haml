@@ -2,10 +2,12 @@
 %div{:align => "center"}= will_paginate
 %div{:align => "center"}
   -@users.each do |user|
-    %ul
-      .listing
-        %li= link_to gravatar_for(user), user_path(user)
-        -# link to the user showpage use user_path
-        %li= link_to user.username, user_path(user)
-        %li= pluralize(user.articles.count, "article") if user.articles
+    .row
+      %ul{style: "list-style: none"}
+        .listing.col-xs-8.col-xs-offset-2.article-body.well.well-lg
+          %li= link_to gravatar_for(user), user_path(user)
+          -# link to the user showpage use user_path
+          .article-title
+            %li= link_to user.username, user_path(user)
+          %li= pluralize(user.articles.count, "article") if user.articles
 %div{:align=>"center"}=will_paginate
